@@ -4,7 +4,7 @@ This repo walks through some simple analyses of the CZID sequencing data from th
 
 First, on CZID, try highlighting all the samples, and in the upper righthand corner of the sample list, click 'Download' - you will see several options for types of files to download. First, try clicking the 'Samples Overview' csv file for download -- we have stored that here in the 'data' subfolder under the name "gce_sample_summary.csv". 
 
-<img src=https://github.com/brooklabteam/mNGS-human-fever/blob/main/guide-pics/download-types.png  width="300" height="300">
+<img src=https://github.com/brooklabteam/mNGS-human-fever/blob/main/guide-pics/download-types.png  width="500" height="500">
 
 
 In the "R-code" subfolder, you will find a script "process_plot_summary.R" that walks through how to visualize this output. The resulting plots start with "QC_" and can be found in the "figures" folder.
@@ -15,6 +15,7 @@ Also, on CZID, if you want to download the pathogen hits associated with each sa
 
 Finally, it is possible to download genomic data for a single sample (or several samples simultaneously), as well as the heatmap metrics. Take a look at [this sample](https://czid.org/samples/23806) as an example. If you click on "Metapneumovirus", you will see the converage visualization and the two contigs that were constructed. You can download those directly as .fasta files by clicking on the cloud icon to the right. 
 
-![](guide-pics/coverage-visualization.png)
+<img src=https://github.com/brooklabteam/mNGS-human-fever/blob/main/guide-pics/coverage-visualization.png  width="700" height="300">
+
 
 
