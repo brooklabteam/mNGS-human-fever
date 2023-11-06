@@ -1,0 +1,51 @@
+sample_name,sample.type,correct_diagnosis,previous_diagnosis,pathogen_type,RNA_v_DNA
+RR034H_002_WBaR1_S2,whole blood,1,Plasmodium,protozoan,DNA
+RR034H_002_WBaR1_S2,whole blood,0,Haemophilus influenza,bacteria,DNA
+RR034H_003_WBaR1_S3,whole blood,0,EBV,virus,RNA
+RR034H_003_WBaR1_S3,whole blood,0,rhinovirus,virus,RNA
+RR034H_004_WBaR1_S4,whole blood,1,Acineotibacter,bacteria,DNA
+RR034H_005_WBaR1_S5,whole blood,0,rhinovirus,virus,RNA
+RR034H_006_WBaR1_S6,whole blood,1,Plasmodium,protozoan,DNA
+RR034H_108_nsbRa_S106,nasopharyngeal swab,1,RSV,virus,RNA
+RR034H_109_nsbRa_S107,nasopharyngeal swab,1,RSV,virus,RNA
+RR034H_110_nsbRa_S108,nasopharyngeal swab,1,RSV,virus,RNA
+RR034H_111_nsbRa_S109,nasopharyngeal swab,1,RSV,virus,RNA
+RR034H_112_nsbRa_S110,nasopharyngeal swab,1,RSV,virus,RNA
+RR034H_115_nsbRa_S113,nasopharyngeal swab,1,RSV,virus,RNA
+RR034H_116_nsbRa_S114,nasopharyngeal swab,1,RSV,virus,RNA
+RR034H_117_nsbRa_S115,nasopharyngeal swab,1,RSV,virus,RNA
+RR034H_118_nsbRa_S116,nasopharyngeal swab,0,RSV,virus,RNA
+RR034H_119_nsbRa_S117,nasopharyngeal swab,1,H3N2,virus,RNA
+RR034H_120_nsbRa_S118,nasopharyngeal swab,1,Influenza A,virus,RNA
+RR034H_137_wbldRa_S135,whole blood,0,EBV,virus,RNA
+RR034H_137_wbldRa_S135,whole blood,0,rhinovirus,virus,RNA
+RR034H_138_wbldRa_S136,whole blood,1,Plasmodium,protozoan,DNA
+RR034H_139_wbldRa_S137,whole blood,0,EBV,virus,RNA
+RR034H_140_wbldRa_S138,whole blood,1,Plasmodium,bacteria,DNA
+RR034H_144_wbldRa_S142,whole blood,0,Haemophilus influenza,protozoan,DNA
+RR034H_144_wbldRa_S142,whole blood,1,Plasmodium,protozoan,DNA
+RR034H_144_wbldRa_S142,whole blood,0,Influenza A,virus,RNA
+RR034H_151_wbldRa_S149,whole blood,1,Plasmodium,protozoan,DNA
+RR034H_152_wbldRa_S150,whole blood,0,rhinovirus,virus,RNA
+RR034H_154_wbldRa_S152,whole blood,0,EBV,virus,RNA
+RR034H_154_wbldRa_S152,whole blood,0,Haemophilus influenza,bacteria,DNA
+RR034H_155_wbldRa_S153,whole blood,0,rhinovirus,virus,RNA
+RR034H_156_wbldRa_S154,whole blood,0,Haemophilus influenza,bacteria,DNA
+RR034H_156_wbldRa_S154,whole blood,1,Plasmodium,protozoan,DNA
+RR034H_156_wbldRa_S154,whole blood,0,Streptoccocus,bacteria,DNA
+RR034H_159_wbldRa_S157,whole blood,1,Plasmodium,protozoan,DNA
+RR034H_161_wbldRa_S159,whole blood,1,Plasmodium,protozoan,DNA
+RR034H_162_wbldRa_S160,whole blood,0,Haemophilus influenza,bacteria,DNA
+RR034H_162_wbldRa_S160,whole blood,0,rhinovirus,virus,RNA
+RR034H_174_wbldRa_S171,whole blood,1,Plasmodium,bacteria,DNA
+RR034H_202_serRa_S200,serum,0,DENV,virus,RNA
+RR034H_203_serRa_S201,serum,0,DENV,virus,RNA
+RR034H_204_serRa_S202,serum,0,DENV,virus,RNA
+RR034H_205_serRa_S203,serum,0,CHIK,virus,RNA
+RR034H_206_serRa_S204,serum,0,CHIK,virus,RNA
+RR034H_207_serRa_S205,serum,0,CHIK,virus,RNA
+RR034H_208_serRa_S206,serum,0,CHIK,virus,RNA
+RR034H_209_serRa_S207,serum,0,CHIK,virus,RNA
+RR034H_212_serRa_S210,serum,0,CHIK,virus,RNA
+RR034H_213_serRa_S211,serum,0,CHIK,virus,RNA
+RR034H_214_serRa_S212,serum,0,CHIK,virus,RNA

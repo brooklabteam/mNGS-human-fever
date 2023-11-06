@@ -12,29 +12,30 @@ homewd = "/Users/carabrook/Developer/mNGS-human-fever"
 
 setwd(homewd)
 
-
-setwd("/Users/caraebrook/Documents/R/R_repositories/CZB/GCE_heatmap/")
-#load the output data from the human GCE - and build into a master dataset
-heat.NP.virus <- read.csv(file="heatmap_NPswabs_virus.csv", header = T, stringsAsFactors = F)
-heat.NP.eukaryota <- read.csv(file="heatmap_NPswabs_eukaryota.csv", header = T, stringsAsFactors = F)
-heat.NP.bacteria <- read.csv(file="heatmap_NPswabs_bacteria.csv", header = T, stringsAsFactors = F)
+# load the output data from the human GCE - and build into a master dataset
+# we downloaded these as subsets because there was not a possibility of downloading higher taxonomic
+# categories above the pathogen name from CZID - so we constructed it here ourselves
+# we also separated this way by sample type
+heat.NP.virus <- read.csv(file=paste0(homewd,"/data/heatmap_NPswabs_virus.csv"), header = T, stringsAsFactors = F)
+heat.NP.eukaryota <- read.csv(file=paste0(homewd,"/data/heatmap_NPswabs_eukaryota.csv"), header = T, stringsAsFactors = F)
+heat.NP.bacteria <- read.csv(file=paste0(homewd,"/data/heatmap_NPswabs_bacteria.csv"), header = T, stringsAsFactors = F)
 heat.NP.virus$taxon_type <- "virus"
 heat.NP.eukaryota$taxon_type <- "eukaryota"
 heat.NP.bacteria$taxon_type <- "bacteria"
 heat.NP <- rbind(heat.NP.virus, heat.NP.bacteria, heat.NP.eukaryota)
 
-heat.SP.virus <- read.csv(file="heatmap_serum_plasma_virus.csv", header = T, stringsAsFactors = F)
-heat.SP.eukaryota <- read.csv(file="heatmap_serum_plasma_eukaryota.csv", header = T, stringsAsFactors = F)
-heat.SP.bacteria <- read.csv(file="heatmap_serum_plasma_bacteria.csv", header = T, stringsAsFactors = F)
+heat.SP.virus <- read.csv(file=paste0(homewd,"/data/heatmap_serum_plasma_virus.csv"), header = T, stringsAsFactors = F)
+heat.SP.eukaryota <- read.csv(file=paste0(homewd,"/data/heatmap_serum_plasma_eukaryota.csv"), header = T, stringsAsFactors = F)
+heat.SP.bacteria <- read.csv(file=paste0(homewd,"/data/heatmap_serum_plasma_bacteria.csv"), header = T, stringsAsFactors = F)
 heat.SP.virus$taxon_type <- "virus"
 heat.SP.eukaryota$taxon_type <- "eukaryota"
 heat.SP.bacteria$taxon_type <- "bacteria"
 heat.SP <- rbind(heat.SP.virus, heat.SP.bacteria, heat.SP.eukaryota)
 
 
-heat.WB.virus <- read.csv(file="heatmap_wholeblood_virus.csv", header = T, stringsAsFactors = F)
-heat.WB.eukaryota <- read.csv(file="heatmap_wholeblood_eukaryota.csv", header = T, stringsAsFactors = F)
-heat.WB.bacteria <- read.csv(file="heatmap_wholeblood_bacteria.csv", header = T, stringsAsFactors = F)
+heat.WB.virus <- read.csv(file=paste0(homewd,"/data/heatmap_wholeblood_virus.csv"), header = T, stringsAsFactors = F)
+heat.WB.eukaryota <- read.csv(file=paste0(homewd,"/data/heatmap_wholeblood_eukaryota.csv"), header = T, stringsAsFactors = F)
+heat.WB.bacteria <- read.csv(file=paste0(homewd,"/data/heatmap_wholeblood_bacteria.csv"), header = T, stringsAsFactors = F)
 heat.WB.virus$taxon_type <- "virus"
 heat.WB.eukaryota$taxon_type <- "eukaryota"
 heat.WB.bacteria$taxon_type <- "bacteria"
@@ -49,14 +50,13 @@ head(heat.dat)
 length(unique(heat.dat$sample_name)) #313. now 309 must be ignoring the weird pathogen groups
 
 
-#now pair it with most up-to-date appropriate metadata
-meta.dat <- read.csv(file="/Users/caraebrook/Documents/R/R_repositories/CZB/NextSeq_dat_for_upload.csv", header=T, stringsAsFactors = F )
-#dat <- read.csv(file = "GCE_plate1_for_upload.csv", header = T, stringsAsFactors = F)
-#head(dat)
+#now pair it with most up-to-date appropriate metadata for the samples
+meta.dat <- read.csv(file=paste0(homewd,"/data/GCE-human-metadata.csv"), header=T, stringsAsFactors = F )
 head(meta.dat)
 length(unique(meta.dat$Sample.Name)) #323...what are the 7 that did not report sequences?
 names(meta.dat)[1] <- "sample_name"
 
+#here, commented out but just tested those with no sequences
 #setdiff(unique(meta.dat$sample_name), unique(heat.dat$sample_name))
 #"RR034H_157_wbldRa_S155", "RR034H_163_wbldRa_S161", "RR034H_164_wbldRa_S162", "RR034H_188_wbldRa_S186", "RR034H_199_wbldRa_S197", "RR034H_201_wbldRa_S199", "RR034H_304_plRa_S302" 
 #what are the corresponting host IDs? (from before)
@@ -81,7 +81,7 @@ unique(merge.dat[duplicated(merge.dat),]$Water.Control) #all duplicates are wate
 merge.dat <- merge.dat[!duplicated(merge.dat),]
 
 #now do some analysis by metadata...?
-#can you reconstruct the heat map?
+#can you reconstruct the CZID heat map in R?
 #total reads >5 and would like to include bp length >50 only...
 heat.sub <- subset(merge.dat, NT_r>10)
 head(heat.sub)
@@ -166,7 +166,8 @@ print(p3)
 pout <- cowplot::plot_grid(p3, p2, nrow=1, ncol=2, rel_widths = c(1.5,1) )
 pout
 
-ggsave(file = "GCE_NP_swab_viruses.pdf",
+ggsave(file = paste0(homewd,"/figures/GCE_NP_swab_viruses_prevalence_heatmap.png"),
+       plot = pout,
        units="mm",  
        width=140, 
        height=80, 
@@ -194,7 +195,9 @@ p5 <- ggplot(data=NP.sub) + geom_tile(aes(x=sampleID, y= taxon_name, fill=log(NT
 print(p5)
 
 #and save
-ggsave(file = "GCE_NP_swab_all_pathogens.pdf",
+
+ggsave(file = paste0(homewd,"/figures/GCE_NP_swab_all_pathogens_heatmap.png"),
+       plot=p5,
        units="mm",  
        width=70, 
        height=150, 
@@ -236,7 +239,8 @@ p6 <- ggplot(data=WB.sub) + geom_tile(aes(x=sampleID, y= taxon_name, fill=log(NT
   scale_fill_gradient(low ="yellow",  high = "red") + scale_x_discrete(position = "top") 
 print(p6)
 
-ggsave(file = "GCE_WB_all_pathogens.pdf",
+ggsave(file = paste0(homewd,"/figures/GCE_WB_swab_all_pathogens_heatmap.png"),
+       plot = p6,
        units="mm",  
        width=70, 
        height=150, 
@@ -281,7 +285,8 @@ p7 <- ggplot(data=SP.sub) + geom_tile(aes(x=sampleID, y= taxon_name, fill=log(NT
   scale_fill_gradient(low ="yellow",  high = "red") + scale_x_discrete(position = "top") 
 print(p7)
 
-ggsave(file = "GCE_SP_all_pathogens.pdf",
+ggsave(file = paste0(homewd,"/figures/GCE_SP_all_pathogens_heatmap.png"),
+       plot=p7,
        units="mm",  
        width=70, 
        height=150, 
@@ -290,7 +295,7 @@ ggsave(file = "GCE_SP_all_pathogens.pdf",
 
 
 
-#now look at prevalence of key pathogens - only in the NP swabs
+#now look at prevalence of key pathogens of interest - only in the NP swabs
 head(NP.sub)
 NP.sum <- ddply(NP.sub, .(taxon_type, taxon_name), summarize, N_pos = length(sample_name))
 NP.sum <- arrange(NP.sum, desc(N_pos))
@@ -305,7 +310,8 @@ p8 <- ggplot(data=NP.sum) + geom_bar(aes(x=taxon_name, y=prevalence, fill=taxon_
   theme(panel.grid = element_blank(), axis.title.y = element_blank(), axis.text.y = element_text( size=3), legend.position = c(.85,.85), legend.title = element_blank()) 
 print(p8)
 
-ggsave(file = "GCE_NP_prevalence.pdf",
+ggsave(file =  paste0(homewd,"/figures/GCE_NP_prevalence.png"),
+       plot = p8,
        units="mm",  
        width=50, 
        height=150, 
@@ -337,14 +343,6 @@ vir.age.plot = subset(vir.age, taxon_name=="Orthopneumovirus" | taxon_name== "En
 p9 <- ggplot(data=vir.age.plot) + geom_point(aes(x=Host.Age, y=prevalence, size = Ntot, color=taxon_name), pch=1) + geom_line(aes(x=Host.Age, y=prevalence, color=taxon_name)) + theme_bw() + theme(panel.grid = element_blank(), strip.background = element_blank()) + xlab("host age") + facet_grid(taxon_name~.) + coord_cartesian(expand=F)
 print(p9)
 
-#why do enteroviruses show up in the respiratory tract?
-
-#ggsave(file = "GCE_NP_age-prevalence.pdf",
-#      units="mm",  
-#     width=50, 
-#    height=150, 
-#   scale=3, 
-#  dpi=300)
 
 #now compare the positive controls
 head(heat.sub)
@@ -376,15 +374,10 @@ p.pos.control <- ggplot(data=pos.control) + geom_tile(aes(x=sampleID, y= taxon_n
   scale_fill_gradient(low ="yellow",  high = "red") + scale_x_discrete(position = "top") 
 print(p.pos.control)
 
-ggsave(file = "GCE_pos.control.pdf",
-       units="mm",  
-       width=50, 
-       height=150, 
-       scale=3, 
-       dpi=300)
+
 
 #and load summary
-pos.dat = read.csv(file = "pos.control.correct.csv", header=T, stringsAsFactors = F)
+pos.dat = read.csv(file = paste0(homewd,"/data/pos.control.correct.csv"), header=T, stringsAsFactors = F)
 head(pos.dat)
 
 #and plot
@@ -403,24 +396,15 @@ pos.correct <- ggplot(data=pos.sum) + geom_bar(aes(x=sample.type, y=prop, fill=p
   theme_bw() + theme(legend.title = element_blank(), axis.title.x = element_blank(),panel.grid = element_blank(), legend.position = c(.75,.95), legend.text = element_text(size=12), axis.title = element_text(size=16), axis.text = element_text(size = 12), legend.direction = "horizontal") +
   geom_label(aes(x=sample.type, y=.92, label=N_label), size=3)
 print(pos.correct)
-ggsave(file = "GCE_pos.control_comp.pdf",
+
+ggsave(file =  paste0(homewd,"/figures/GCE_pos.control_comp.png"),
+       plot = pos.correct,
        units="mm",  
        width=90, 
        height=50, 
        scale=3, 
        dpi=300)
 
-#for poster
-pos.correct.poster <- ggplot(data=pos.sum) + geom_bar(aes(x=sample.type, y=prop, fill=pathogen_type), stat="identity", position="dodge") +ylab("proportion diagnosed correctly") + coord_cartesian(ylim=c(0,1))+
-  theme_bw() + theme(legend.title = element_blank(), axis.title.x = element_blank(),panel.grid = element_blank(), legend.position ="top", legend.text = element_text(size=16), axis.title = element_text(size=16), axis.text.y = element_text(size = 12), axis.text.x = element_text(size = 16), legend.direction = "horizontal") +
-  geom_label(aes(x=sample.type, y=.92, label=N_label), size=4)
-print(pos.correct.poster)
-ggsave(file = "GCE_pos.control_poster.pdf",
-       units="mm",  
-       width=80, 
-       height=50, 
-       scale=3, 
-       dpi=300)
 
 
 #and prop non-host reads per microbe type
@@ -449,7 +433,9 @@ p.out <- ggplot(data=read.sub) + geom_bar(aes(x=sample_name, y= prop, fill=taxon
         legend.position = "top", legend.title=element_blank(), legend.direction = "horizontal") + guides(fill = guide_legend(nrow = 1))
 print(p.out)
 
-ggsave(file = "GCE_prop_reads_taxon_type_spacer.pdf",
+
+ggsave(file = paste0(homewd,"/figures/GCE_prop_reads_taxon_type_spacer.png"),
+       plot = p.out,
        units="mm",  
        width=140, 
        height=50, 
@@ -462,7 +448,8 @@ p.out1 <- ggplot(data=read.sub) + geom_bar(aes(x=sample_name, y= prop, fill=taxo
         legend.position = "top", legend.title=element_blank(), legend.direction = "horizontal") + guides(fill = guide_legend(nrow = 1))
 print(p.out1)
 
-ggsave(file = "GCE_prop_reads_taxon_type.pdf",
+ggsave(file = paste0(homewd,"/figures/GCE_prop_reads_taxon_type.png"),
+       plot=p.out1,
        units="mm",  
        width=140, 
        height=50, 
@@ -470,15 +457,8 @@ ggsave(file = "GCE_prop_reads_taxon_type.pdf",
        dpi=300)
 
 
-
+#and look with name too
 p.test <- ggplot(data=read.sub) + geom_bar(aes(x=sample_name, y= prop, fill=taxon_type), stat = "identity", position = "stack")+theme_bw()+
   theme(panel.grid = element_blank(), axis.title.y = element_text(size=18), axis.text.y = element_text(size=14), axis.title.x = element_blank(), axis.text.x = element_text(size=2, angle=90),
         legend.position = "top", legend.title=element_blank(), legend.direction = "horizontal") + guides(fill = guide_legend(nrow = 1))
 print(p.test)
-ggsave(file = "GCE_prop_reads_with_name.pdf",
-       units="mm",  
-       width=140, 
-       height=50, 
-       scale=3, 
-       dpi=300)
-

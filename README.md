@@ -6,4 +6,4 @@ First, on CZID, try highlighting all the samples, and in the upper righthand cor
 
 On CZID, there is also the option to download "Sample Metadata", which is user-uploaded metadata that has been uploaded with the sequences. Depending on who did the upload, however, these data are often incomplete. Here, we will supply our own metadata file instead. 
 
-Next, if you want to download the pathogen hits associated with each sample, try selecting all the samples, then building a 'heatmap', then download the corresponding csv file from the heatmap.
+Also, on CZID, if you want to download the pathogen hits associated with each sample, try selecting all the samples, then building a 'heatmap', then download the corresponding csv file from the heatmap. You have the option to download the heatmap after filtering or before. There are a few subsets of these heatmaps that are referenced in the 'GCE_human_analyses.R' script.
