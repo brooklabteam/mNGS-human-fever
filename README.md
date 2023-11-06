@@ -7,11 +7,11 @@ First, on CZID, try highlighting all the samples, and in the upper righthand cor
 <img src=https://github.com/brooklabteam/mNGS-human-fever/blob/main/guide-pics/download-types.png  height="300">
 
 
-In the "R-code" subfolder, you will find a script "process_plot_summary.R" that walks through how to visualize this output. The resulting plots start with "QC_" and can be found in the "figures" folder.
+In the "R-code" subfolder, you will find a script "[process_plot_summary.R](https://github.com/brooklabteam/mNGS-human-fever/blob/main/R-code/process_plot_summary.R)" that walks through how to visualize this output. The resulting plots start with "QC_" and can be found in the "figures" folder.
 
 On CZID, there is also the option to download "Sample Metadata", which is user-uploaded metadata that has been uploaded with the sequences. Depending on who did the upload, however, these data are often incomplete. Here, we will supply our own metadata file instead - you can find this one in the "data" subfolder under name "GCE-human-metadat.csv". 
 
-Also, on CZID, if you want to download the pathogen hits associated with each sample, try selecting all the samples, then building a 'heatmap', then download the corresponding csv file from the heatmap. You have the option to download the heatmap after filtering or before. There are a few subsets of these heatmaps that are referenced in the 'GCE_human_analyses.R' script. I downloaded them as separate subsets to help with the addition of higher level taxonomic groupings (CZID only downloads pathogen name for example), as well as sample type.
+Also, on CZID, if you want to download the pathogen hits associated with each sample, try selecting all the samples, then building a 'heatmap', then download the corresponding csv file from the heatmap. You have the option to download the heatmap after filtering or before. There are a few subsets of these heatmaps that are referenced in the '[GCE_human_analyses.R](https://github.com/brooklabteam/mNGS-human-fever/blob/main/R-code/GCE_human_analyses.R)' script. I downloaded them as separate subsets to help with the addition of higher level taxonomic groupings (CZID only downloads pathogen name for example), as well as sample type.
 
 Finally, it is possible to download genomic data for a single sample (or several samples simultaneously), as well as the heatmap metrics. Take a look at [this sample](https://czid.org/samples/23806) as an example. If you click on "Metapneumovirus", you will see the coverage visualization plot below and the two contigs that were constructed. You can download those directly as .fasta files by clicking on the cloud icon to the right. 
 
