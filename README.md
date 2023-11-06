@@ -5,7 +5,7 @@ This repo walks through some simple analyses of the CZID sequencing data from th
 First, on CZID, try highlighting all the samples, and in the upper righthand corner of the sample list, click 'Download' - you will see several options for types of files to download. First, try clicking the 'Samples Overview' csv file for download -- we have stored that here in the 'data' subfolder under the name "gce_sample_summary.csv". 
 
 
-![](guide-pics/download-types.png| width=100)
+![](guide-pics/download-types.png | width=100)
 
 In the "R-code" subfolder, you will find a script "process_plot_summary.R" that walks through how to visualize this output. The resulting plots start with "QC_" and can be found in the "figures" folder.
 
