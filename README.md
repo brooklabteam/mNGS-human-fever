@@ -38,7 +38,9 @@ This highlights one other feature of CZID--you can build a 'consensus genome' wh
 Clicking on the 'Download All' option downloads a zipped file that actually has a read depth plot as well as the non-host reads (fq.gz files) and several output files. The 'samtools_depth.txt' file that is produced gives you the read depth across the entire genome. I included these two samtools files and teh two .tsv report files for mngs and msspe in the 'data' subfolder -- see '' script to process these into a coverage plot like this:
 
 
+<img src=https://github.com/brooklabteam/mNGS-human-fever/blob/main/figures/mNGS_MSSPE_comparison_read_depth.png  width="500">
 
+The interesting thing about above is that, by just looking at the raw read depth plot, it looks like MSSPE is doing great. But when you actually plot reads per million, we see that that mNGS actuallyhas higher reads per million in many places in the genome, but that there were just A LOT of reads produced in the MSSPE run (this makes sense as it was run on a NovaSeq while the mNGS was run on a NextSeq). However, we can say that the coverage has greater breadth in the case of MSSPE, meaning no dropouts with no resolution across the genome. This is a value that us reported in the .tsv report files as "Coverage >= 1x (%)" -- you'll see it is 99% for the MSSPE (meaning every basepair has support at 1X or higher), while for mNGS it is only 1.71%.
 
 
 Finally, once you have genomes in hand, the Brook lab has lots of great resources for how to build Bayesian timetrees (e.g. [here](https://github.com/brooklabteam/cambodia-dengue-national)) or maximum likelihood phylogenies (e.g. [here](https://github.com/brooklabteam/cambodia-dengue-national/blob/main/figure-development/FigS18/Prep-ML-Tree.md)). There are also good how-to scripts for these in the [Mada-Bat-CoV repo](https://github.com/brooklabteam/Mada-Bat-CoV).
