@@ -4,7 +4,7 @@ This repo walks through some simple analyses of the CZID sequencing data from th
 
 First, on CZID, try highlighting all the samples, and in the upper righthand corner of the sample list, click 'Download' - you will see several options for types of files to download. First, try clicking the 'Samples Overview' csv file for download -- we have stored that here in the 'data' subfolder under the name "gce_sample_summary.csv". 
 
-<img src=https://github.com/brooklabteam/mNGS-human-fever/blob/main/guide-pics/download-types.png  width="500" height="500">
+<img src=https://github.com/brooklabteam/mNGS-human-fever/blob/main/guide-pics/download-types.png  height="300">
 
 
 In the "R-code" subfolder, you will find a script "process_plot_summary.R" that walks through how to visualize this output. The resulting plots start with "QC_" and can be found in the "figures" folder.
@@ -15,17 +15,17 @@ Also, on CZID, if you want to download the pathogen hits associated with each sa
 
 Finally, it is possible to download genomic data for a single sample (or several samples simultaneously), as well as the heatmap metrics. Take a look at [this sample](https://czid.org/samples/23806) as an example. If you click on "Metapneumovirus", you will see the coverage visualization plot below and the two contigs that were constructed. You can download those directly as .fasta files by clicking on the cloud icon to the right. 
 
-<img src=https://github.com/brooklabteam/mNGS-human-fever/blob/main/guide-pics/coverage-visualization.png  width="700" height="300">
+<img src=https://github.com/brooklabteam/mNGS-human-fever/blob/main/guide-pics/coverage-visualization.png  width="600">
 
 You can also download all of the non-host contigs from this sample, (meaning all of the contigs that were assembled by de novo assembly in CZID after all of the filtration steps) by clicking on the "Download" button with the cloud in the upper right of the screen. 
 
-<img src=https://github.com/brooklabteam/mNGS-human-fever/blob/main/guide-pics/all-contig-download.png  width="500" height="400">
+<img src=https://github.com/brooklabteam/mNGS-human-fever/blob/main/guide-pics/all-contig-download.png  width="550">
 
 These contigs can then be BLASTed (either manually or via a command line script) to NCBI. Occassionally, CZID assembles a contig correctly but gets the BLAST link wrong, so a manual BLAST to a curated reference database can be helpful. Gwen used this project to identify contigs that were hits to bat CoVs her [paper](https://www.frontiersin.org/articles/10.3389/fpubh.2022.786060/full), following this pipeline [here](https://github.com/brooklabteam/Mada-Bat-CoV/blob/main/contig-blast-directions.md).
 
 Additionally, you can download the unmapped non-host reads (meaning all reads that passed filter but not yet assembled into contigs) by clicking on the "View Results Folder" line from the "Download" button and scrolling to the very bottom. This two nonhost fastq files are Illumina paired end reads. 
 
-<img src=https://github.com/brooklabteam/mNGS-human-fever/blob/main/guide-pics/download-raw-reads.png  width="500" height="400">
+<img src=https://github.com/brooklabteam/mNGS-human-fever/blob/main/guide-pics/download-raw-reads.png  width="400">
 
 
 You can use these to do your own de novo assembly or to map reads to a contig to see the coverage depth (e.g. support) for a particular genome (essentially recreating the coverage plot above). I walk through a couple examples of these paired covereage plots using Christian's script, comparing coverage from [MSSPE](https://www.nature.com/articles/s41564-019-0637-9) and mNGS in the script '' located in the R-scripts folder. A few plots found in the "figures" sub-folder are then produced.
