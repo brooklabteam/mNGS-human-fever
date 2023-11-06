@@ -28,11 +28,22 @@ Additionally, you can download the unmapped non-host reads (meaning all reads th
 <img src=https://github.com/brooklabteam/mNGS-human-fever/blob/main/guide-pics/download-raw-reads.png  width="400">
 
 
-You can use these to do your own de novo assembly or to map reads to a contig to see the coverage depth (e.g. support) for a particular genome (essentially recreating the coverage plot above). I walk through a couple examples of these paired covereage plots using Christian's script, comparing coverage from [MSSPE](https://www.nature.com/articles/s41564-019-0637-9) and mNGS in the script '' located in the R-scripts folder. A few plots found in the "figures" sub-folder are then produced.
+You can use these to do your own de novo assembly or to map reads to a contig to see the coverage depth (e.g. support) for a particular genome (essentially recreating the coverage plot above). I walk through a couple examples of these paired covereage plots using Christian's script, comparing coverage from [MSSPE](https://www.nature.com/articles/s41564-019-0637-9) and mNGS in the script '' located in the R-scripts folder. A few plots found in the "figures" sub-folder are then produced. This script compares the HCoV-HKU1 coverage from mNGS (see [here](https://czid.org/samples/23804) and click on the 'Consensus Genome' tab) vs. that with MSSPE (see [here](https://czid.org/samples/358165)).
 
-Finally, once you have genomes in hand, the Brook lab has lots of great resources for how to build Bayesian timetrees (e.g. here) or maximum likelihood phylogenies (e.g. here). There are also good how-to scripts for these in the [Mada-Bat-CoV repo](https://github.com/brooklabteam/Mada-Bat-CoV).
+This highlights one other feature of CZID--you can build a 'consensus genome' where it maps all raw reads to the closet hit in GenBank and tries to build a consensus genome. You will see this as an option when you upload new samples. You can download the data needed to produce above by clicking the 'Download All' button (top right with cloud) on each sample page in CZID. 
 
-It's also work taking a glance through the [SARS-CoV-2 genome curation repo](https://github.com/brooklabteam/SC2-genome-curation) to get an idea of other secrets hidden in CZID!
+<img src=https://github.com/brooklabteam/mNGS-human-fever/blob/main/guide-pics/download-all-vis.png  width="400">
+
+
+Clicking on the 'Download All' option downloads a zipped file that actually has a read depth plot as well as the non-host reads (fq.gz files) and several output files. The 'samtools_depth.txt' file that is produced gives you the read depth across the entire genome. I included these two samtools files and teh two .tsv report files for mngs and msspe in the 'data' subfolder -- see '' script to process these into a coverage plot like this:
+
+
+
+
+
+Finally, once you have genomes in hand, the Brook lab has lots of great resources for how to build Bayesian timetrees (e.g. [here](https://github.com/brooklabteam/cambodia-dengue-national)) or maximum likelihood phylogenies (e.g. [here](https://github.com/brooklabteam/cambodia-dengue-national/blob/main/figure-development/FigS18/Prep-ML-Tree.md)). There are also good how-to scripts for these in the [Mada-Bat-CoV repo](https://github.com/brooklabteam/Mada-Bat-CoV).
+
+It's also worth taking a glance through the [SARS-CoV-2 genome curation repo](https://github.com/brooklabteam/SC2-genome-curation) to get an idea of other secrets hidden in CZID! There are some scripts in here that automate the download of the samtools files to produce read coverage plots across many sample types.
 
 
 
