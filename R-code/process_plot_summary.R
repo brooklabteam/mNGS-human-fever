@@ -19,7 +19,7 @@ sum.dat = arrange(sum.dat, total_reads)
 sum.dat$sample_number = seq(1, length(sum.dat$sample_name),1)
 sum.dat$sample_number = factor(sum.dat$sample_number, levels=unique(sum.dat$sample_number))
 
-#visualize total rea
+#visualize total reads
 p1 <- ggplot(data=sum.dat) + geom_bar(aes(x=sample_number, y = log(total_reads), fill=sample_type), stat="identity") + theme_bw() + 
   theme(legend.title = element_blank(), panel.grid = element_blank(),  axis.title.x = element_blank(), legend.position=c(.8,.21), legend.text = element_text(size=8), axis.text.y = element_text(size=16), axis.title.y = element_text(size=18), axis.text.x = element_blank(), axis.ticks.x = element_blank()) + ylab("total reads") + 
   scale_y_discrete(limits=c(2.302585, 4.60517, 6.907755, 9.21034, 11.51293, 13.81551, 16.1181), labels=c( "10", "100", "1000",  "10000", "100000", "1000000", "10000000"))
